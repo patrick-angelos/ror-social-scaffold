@@ -3,4 +3,7 @@
   <span class="profile-link">
     <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
   </span>
+  <% if !friend?(user) && user.id != current_user.id%>
+    <p><%= link_to "Invite", "/users/#{user.id}/friendships", method: :post%></p>
+  <% end %>
 </li>

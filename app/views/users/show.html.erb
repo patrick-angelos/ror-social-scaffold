@@ -1,6 +1,15 @@
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
-  <p><%= link_to "Invite", root_path %></p>
+  <% if !friend?(@user) && @user.id != current_user.id%>
+    <p><%= link_to "Invite", "/users/#{@user.id}/friendships", method: :post%></p>
+  <% end %>
+  <% if @user.id == current_user.id%>
+    <ul>
+      <% Friendship.pending_requests(@user).each do |friend| %>
+        <li><%= friend.name%></li>
+      <% end %>
+    </ul>
+  <% end %>
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
