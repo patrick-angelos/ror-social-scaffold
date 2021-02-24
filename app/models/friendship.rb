@@ -13,13 +13,13 @@ class Friendship < ApplicationRecord
   end
 
   def self.pending_requests(user)
-    received_friendships = Friendship.all.where(friend_id: user.id)
+    received_friendships = Friendship.all.where(friend_id: user.id, status: false)
   end
 
   def self.all_friends(user)
     sent_friendships = Friendship.all.where(user_id: user.id)
     received_friendships = Friendship.all.where(friend_id: user.id)
-    all_friends = sent_friendships.map {|friendship| friendship.friend}
-    all_friends += received_friendships.map {|friendship| friendship.friend_request}
+    all_friends = sent_friendships.map {|friendship| friendship.friend.id}
+    all_friends += received_friendships.map {|friendship| friendship.friend_request.id}
   end
 end
