@@ -11,6 +11,6 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :friendships
   has_many :friends, through: :friendships
-  has_many :requests, class_name: "Friendship", foreign_key: :friend_id
-  has_many :inverse_friends, through: :requests, class_name: "User"
+  has_many :requests, class_name: 'Friendship', foreign_key: :friend_id
+  has_many :inverse_friends, through: :requests, class_name: 'User'
 end

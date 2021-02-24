@@ -46,9 +46,9 @@ group :development, :test do
 end
 
 group :test do
-  gem 'rspec'
-  gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
   gem 'capybara', '>= 3.26'
+  gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
+  gem 'rspec'
 end
 
 group :development do

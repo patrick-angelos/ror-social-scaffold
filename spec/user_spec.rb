@@ -67,7 +67,7 @@ RSpec.describe 'User', type: :model do
     end
   end
 end
-
+# rubocop:disable Metrics/BlockLength
 RSpec.feature 'Users' do
   before(:each) do
     @user = User.create(name: 'user1', email: 'user1@email.com', password: '123456')
@@ -136,3 +136,4 @@ RSpec.feature 'Users' do
     expect(current_path).to eql('/users/1')
   end
 end
+# rubocop:enable Metrics/BlockLength
