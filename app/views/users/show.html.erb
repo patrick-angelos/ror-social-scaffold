@@ -3,10 +3,11 @@
   <% if !friend?(@user) && @user.id != current_user.id%>
     <p><%= link_to "Invite", "/users/#{@user.id}/friendships", method: :post%></p>
   <% end %>
-  <% if @user.id == current_user.id%>
+  <% if @user.id == current_user.id %>
+    <p>Invitations:</p>
     <ul>
-      <% Friendship.pending_requests(@user).each do |friend| %>
-        <li><%= friend.name%></li>
+      <% Friendship.pending_requests(@user).each do |friendship| %>
+        <li><%= friendship.friend_request.name %> <%= link_to 'Accept', "/users/#{@user.id}/friendships/#{friendship.id}", method: :put%> <%= link_to 'Reject', "/users/#{@user.id}/friendships/#{friendship.id}", method: :delete %></li>
       <% end %>
     </ul>
   <% end %>
