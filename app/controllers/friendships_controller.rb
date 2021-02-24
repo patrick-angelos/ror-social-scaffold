@@ -23,6 +23,6 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
-    redirect_to current_user
+    redirect_to current_user, notice: 'Invitation Rejected'
   end
 end
