@@ -70,6 +70,22 @@ RSpec.describe 'User', type: :model do
       user = User.reflect_on_association(:users)
       expect(user.macro).to eql(:has_many)
     end
+    it 'can have many confirmed friendships' do
+      user = User.reflect_on_association(:confirmed_friendships)
+      expect(user.macro).to eql(:has_many)
+    end
+    it 'can have many confirmed friends' do
+      user = User.reflect_on_association(:confirmed_friends)
+      expect(user.macro).to eql(:has_many)
+    end
+    it 'can have many pending friendships' do
+      user = User.reflect_on_association(:pending_friendships)
+      expect(user.macro).to eql(:has_many)
+    end
+    it 'can have many pwdning friends' do
+      user = User.reflect_on_association(:pending_friends)
+      expect(user.macro).to eql(:has_many)
+    end
   end
 end
 # rubocop:disable Metrics/BlockLength

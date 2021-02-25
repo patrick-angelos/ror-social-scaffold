@@ -1,10 +1,9 @@
 class FriendshipsController < ApplicationController
   def create
     @friendship = current_user.friendships.new(friend_id: params[:user_id])
-    @inverse_friendship = Friendship.new(user_id: params[:user_id], friend_id: current_user.id, status: 0)
-    @friendship.status = 1
+    @friendship.status = false
 
-    if @friendship.save && @inverse_friendship.save
+    if @friendship.save
       redirect_to @friendship.friend, notice: 'Invitation Sent'
     else
       redirect_to @friendship.friend, alert: 'Invitaion was not sent'
@@ -12,17 +11,17 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    @pair_friendship = Friendship.all.where('id >= ?', params[:id]).limit(2)
-    @pair_friendship.each do |friendship|
-      friendship.status = 2
-      friendship.save
-    end
+    @friendship = Friendship.find(params[:id])
+    @friendship.status = true
+    @friendship.save
+    @inverse_friendship = Friendship.new(user_id: current_user.id, friend_id: @friendship.user_id, status: true)
+    @inverse_friendship.save
     redirect_to current_user, notice: 'Invitation Accepted'
   end
 
   def destroy
-    @pair_friendship = Friendship.all.where('id >= ?', params[:id]).limit(2)
-    @pair_friendship.each(&:destroy)
+    @friendship = Friendship.find(params[:id])
+    @friendship.destroy
     redirect_to current_user, notice: 'Invitation Rejected'
   end
 end
