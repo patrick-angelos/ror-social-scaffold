@@ -12,8 +12,8 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    @pair_friendship = Friendship.all.where("id >= ?", params[:id]).limit(2)
-    @pair_friendship.each do |friendship| 
+    @pair_friendship = Friendship.all.where('id >= ?', params[:id]).limit(2)
+    @pair_friendship.each do |friendship|
       friendship.status = 2
       friendship.save
     end
@@ -21,10 +21,8 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @pair_friendship = Friendship.all.where("id >= ?", params[:id]).limit(2)
-    @pair_friendship.each do |friendship| 
-      friendship.destroy
-    end
+    @pair_friendship = Friendship.all.where('id >= ?', params[:id]).limit(2)
+    @pair_friendship.each(&:destroy)
     redirect_to current_user, notice: 'Invitation Rejected'
   end
 end

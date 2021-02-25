@@ -5,7 +5,7 @@ FactoryBot.define do
     sequence(:password) { |n| "password#{n}" }
   end
 
-  factory :friend, class: "User" do
+  factory :friend, class: 'User' do
     sequence(:name) { |n| "Name#{n}" }
     sequence(:email) { |n| "email#{n}@email.com" }
     sequence(:password) { |n| "password#{n}" }
