@@ -12,22 +12,19 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    @friendship = Friendship.find(params[:id])
-    @inverse_friendship = Friendship.find(params[:id].to_i + 1)
-    @friendship.status = 2
-    @inverse_friendship.status = 2
-    if @friendship.save && @inverse_friendship.save
-      redirect_to current_user, notice: 'Invitation Accepted'
-    else
-      redirect_to current_user, alert: 'Something went wrong'
+    @pair_friendship = Friendship.all.where("id >= ?", params[:id]).limit(2)
+    @pair_friendship.each do |friendship| 
+      friendship.status = 2
+      friendship.save
     end
+    redirect_to current_user, notice: 'Invitation Accepted'
   end
 
   def destroy
-    @friendship = Friendship.find(params[:id])
-    @inverse_friendship = Friendship.find(params[:id].to_i + 1)
-    @friendship.destroy
-    @inverse_friendship.destroy
+    @pair_friendship = Friendship.all.where("id >= ?", params[:id]).limit(2)
+    @pair_friendship.each do |friendship| 
+      friendship.destroy
+    end
     redirect_to current_user, notice: 'Invitation Rejected'
   end
 end

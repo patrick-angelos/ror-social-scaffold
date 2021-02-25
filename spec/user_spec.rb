@@ -1,4 +1,6 @@
 require 'rails_helper'
+require_relative 'factories'
+require_relative 'support/factory_bot'
 
 RSpec.configure do |c|
   c.use_transactional_examples = false
@@ -6,6 +8,9 @@ RSpec.configure do |c|
 end
 
 RSpec.describe 'User', type: :model do
+  it 'creates valid users' do
+    expect(create(:user)).to be_valid
+  end
   it 'must have a name, email and password to be valid' do
     user = User.new(name: 'user1', email: 'user1@email.com', password: '123456')
     user.save

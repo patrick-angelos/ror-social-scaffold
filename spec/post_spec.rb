@@ -1,4 +1,6 @@
 require 'rails_helper'
+require_relative 'factories'
+require_relative 'support/factory_bot'
 
 RSpec.configure do |c|
   c.use_transactional_examples = false
@@ -6,6 +8,9 @@ RSpec.configure do |c|
 end
 
 RSpec.describe 'Post', type: :model do
+  it 'creates valid posts' do
+    expect(create(:post)).to be_valid
+  end
   it 'must have content to be valid' do
     user = User.create(name: 'me', email: 'me@email.com', password: '123456')
     post = user.posts.new(content: 'content')
