@@ -12,7 +12,7 @@ module UsersHelper
     if current_user_profile(user)
       invitations << (content_tag :p, 'Invitations:')
       Friendship.pending_requests(user).each do |friendship|
-        name = (content_tag :span, friendship.inverse_friend.name)
+        name = (content_tag :span, friendship.user.name)
         accept = (content_tag :span, (link_to ' Accept ', friendship_path(friendship), method: :put))
         reject = (content_tag :sapn, (link_to ' Reject', friendship_path(friendship), method: :delete))
         invitations << (content_tag :p, name + accept + reject)
