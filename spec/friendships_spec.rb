@@ -12,7 +12,7 @@ RSpec.describe 'Friendship', type: :model do
       expect(friendship.macro).to eql(:belongs_to)
     end
     it 'belongs to an inverse_friend' do
-      friendship = Friendship.reflect_on_association(:inverse_friend)
+      friendship = Friendship.reflect_on_association(:user)
       expect(friendship.macro).to eql(:belongs_to)
     end
   end
