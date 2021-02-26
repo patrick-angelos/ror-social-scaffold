@@ -16,7 +16,7 @@ module UsersHelper
       text << (content_tag :p, accept + reject)
       text.html_safe
     elsif !current_user.friends.exists?(user.id) && !current_user_profile(user)
-      link_to 'Invite', "/users/#{user.id}/friendships", method: :post 
+      link_to 'Invite', "/users/#{user.id}/friendships", method: :post
     end
   end
 
@@ -26,8 +26,10 @@ module UsersHelper
       invitations << (content_tag :p, 'Invitations:')
       user.pending_friendships.each do |friendship|
         name = (content_tag :span, friendship.user.name)
-        accept = (content_tag :span, (link_to ' Accept ', "/users/#{user.id}/friendships/#{friendship.id}", method: :put))
-        reject = (content_tag :sapn, (link_to ' Reject', "/users/#{user.id}/friendships/#{friendship.id}", method: :delete))
+        accept = (content_tag :span,
+                              (link_to ' Accept ', "/users/#{user.id}/friendships/#{friendship.id}", method: :put))
+        reject = (content_tag :sapn,
+                              (link_to ' Reject', "/users/#{user.id}/friendships/#{friendship.id}", method: :delete))
         invitations << (content_tag :p, name + accept + reject)
       end
     end

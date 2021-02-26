@@ -20,16 +20,16 @@ class User < ApplicationRecord
   has_many :pending_friendships, -> { where status: false }, class_name: 'Friendship', foreign_key: :friend_id
   has_many :pending_friends, through: :pending_friendships, source: :user
 
-  has_many :pending_sent_friendships, -> { where status: false}, class_name: 'Friendship', foreign_key: :user_id
+  has_many :pending_sent_friendships, -> { where status: false }, class_name: 'Friendship', foreign_key: :user_id
   has_many :pending_sent_friends, through: :pending_sent_friendships, source: :friend
 
   def friends_posts
-    friends_ids = self.confirmed_friends.map { |friend| friend.id }
-    friends_ids << self.id
+    friends_ids = confirmed_friends.map(&:id)
+    friends_ids << id
     Post.all.ordered_by_most_recent.where(user_id: friends_ids)
   end
 
   def request_from(user)
-    self.pending_friendships.find_by(user_id: user.id)
+    pending_friendships.find_by(user_id: user.id)
   end
 end

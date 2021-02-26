@@ -45,14 +45,14 @@ RSpec.describe 'User', type: :model do
     user1 = create(:user)
     user2 = create(:friend)
     user2.posts.create(attributes_for(:post))
-    params = {user: user1, friend: user2, status: true}
+    params = { user: user1, friend: user2, status: true }
     user1.friendships.create(params)
     expect(user1.friends_posts.exists?(user_id: user2.id)).to eql(true)
   end
   it 'can find individual pending received requests' do
     user1 = create(:user)
     user2 = create(:friend)
-    params = {user: user1, friend: user2, status: false}
+    params = { user: user1, friend: user2, status: false }
     friendship = user1.friendships.create(params)
     expect(user2.request_from(user1).id).to eql(friendship.id)
   end
