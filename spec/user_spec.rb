@@ -41,6 +41,21 @@ RSpec.describe 'User', type: :model do
     user.save
     expect(user).to_not be_valid
   end
+  it 'can have access to every friends post including himself' do
+    user1 = create(:user)
+    user2 = create(:friend)
+    user2.posts.create(attributes_for(:post))
+    params = {user: user1, friend: user2, status: true}
+    user1.friendships.create(params)
+    expect(user1.friends_posts.exists?(user_id: user2.id)).to eql(true)
+  end
+  it 'can find individual pending received requests' do
+    user1 = create(:user)
+    user2 = create(:friend)
+    params = {user: user1, friend: user2, status: false}
+    friendship = user1.friendships.create(params)
+    expect(user2.request_from(user1).id).to eql(friendship.id)
+  end
   describe 'assosiations' do
     it 'can have many posts' do
       user = User.reflect_on_association(:posts)
@@ -82,8 +97,16 @@ RSpec.describe 'User', type: :model do
       user = User.reflect_on_association(:pending_friendships)
       expect(user.macro).to eql(:has_many)
     end
-    it 'can have many pwdning friends' do
+    it 'can have many pedning friends' do
       user = User.reflect_on_association(:pending_friends)
+      expect(user.macro).to eql(:has_many)
+    end
+    it 'can have many pedning sent requests' do
+      user = User.reflect_on_association(:pending_sent_friendships)
+      expect(user.macro).to eql(:has_many)
+    end
+    it 'can have many pedning friends that the user sent invitaions to' do
+      user = User.reflect_on_association(:pending_sent_friends)
       expect(user.macro).to eql(:has_many)
     end
   end

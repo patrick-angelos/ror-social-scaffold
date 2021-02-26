@@ -30,6 +30,6 @@ FactoryBot.define do
   factory :friendship do
     user
     friend
-    status { 2 }
+    status { true }
   end
 end
