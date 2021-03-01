@@ -7,7 +7,7 @@ This project is about creating a social media application, in which users can cr
 ## Built With
 
 - Ruby on Rails
-- Ruby 2.7.0
+- Ruby 2.7.2
 - RSpec
 - Postgresql
 - Git
