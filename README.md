@@ -13,6 +13,9 @@ This project is about creating a social media application, in which users can cr
 - Git
 - CMD
 
+## Live Demo
+
+https://social-media-example.herokuapp.com/
 
 ## Getting Started
 You need the Postgresql database installed before proceeding with the below steps
