@@ -28,6 +28,8 @@ To get started with the project follow the steps below:
 - `rails s` to start the server
 - Go to `localhost:3000` on your browser
 
+### To run the tests
+- `bundle exec rspec`
 
 ## Author
 
