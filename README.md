@@ -13,7 +13,7 @@ This project is about creating a social media application, in which users can cr
 - Git
 - CMD
 
-## Live Demo
+## Live Version
 
 https://social-media-example.herokuapp.com/
 
