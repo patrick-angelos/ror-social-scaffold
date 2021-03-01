@@ -4,25 +4,24 @@ class FriendshipsController < ApplicationController
     @friendship.status = false
 
     if @friendship.save
-      redirect_to @friendship.friend, notice: 'Invitation Sent'
+      redirect_to session[:redirect_url], notice: 'Invitation Sent'
     else
-      redirect_to @friendship.friend, alert: 'Invitaion was not sent'
+      redirect_to session[:redirect_url], alert: 'Invitaion was not sent'
     end
   end
 
   def update
     @friendship = Friendship.find(params[:id])
     @friendship.status = true
-    if @friendship.save
-      redirect_to current_user, notice: 'Invitation Accepted'
-    else
-      redirect_to current_user, alert: 'Something went wrong'
-    end
+    @friendship.save
+    @inverse_friendship = Friendship.new(user_id: current_user.id, friend_id: @friendship.user_id, status: true)
+    @inverse_friendship.save
+    redirect_to session[:redirect_url], notice: 'Invitation Accepted'
   end
 
   def destroy
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
-    redirect_to current_user, notice: 'Invitation Rejected'
+    redirect_to session[:redirect_url], notice: 'Invitation Rejected'
   end
 end

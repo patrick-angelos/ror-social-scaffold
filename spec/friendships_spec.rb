@@ -1,4 +1,6 @@
 require 'rails_helper'
+require_relative 'factories'
+require_relative 'support/factory_bot'
 
 RSpec.configure do |c|
   c.use_transactional_examples = false
@@ -6,6 +8,9 @@ RSpec.configure do |c|
 end
 
 RSpec.describe 'Friendship', type: :model do
+  it 'creates valid friendships' do
+    expect(create(:friendship)).to be_valid
+  end
   describe 'assosiations' do
     it 'belongs to a friend' do
       friendship = Friendship.reflect_on_association(:friend)
