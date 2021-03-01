@@ -7,13 +7,13 @@ This project is about creating a social media application, in which users can cr
 ## Built With
 
 - Ruby on Rails
-- Ruby 2.7.0
+- Ruby 2.7.2
 - RSpec
 - Postgresql
 - Git
 - CMD
 
-## Live Demo
+## Live Version
 
 https://social-media-example.herokuapp.com/
 
@@ -28,6 +28,8 @@ To get started with the project follow the steps below:
 - `rails s` to start the server
 - Go to `localhost:3000` on your browser
 
+### To run the tests
+- `bundle exec rspec`
 
 ## Author
 
