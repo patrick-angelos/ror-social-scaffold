@@ -2,23 +2,19 @@
 
 # RoR Social Media Website
 
-This project is about creating a social media application, in which users can create posts, put likes or dislikes, invite friends, accept or reject invite requests. 
+This project is about creating a social media application, in which users can create posts, like or dislike posts, invite friends, accept or reject invite requests. 
 
 ## Built With
 
 - Ruby on Rails
-- Ruby 2.7.0
+- Ruby 2.7.2
 - RSpec
-- Postgresql
-- Git
-- CMD
+- PostgreSQL
 
-## Live Demo
-
-https://social-media-example.herokuapp.com/
+## [Live Version](https://social-media-example.herokuapp.com/)
 
 ## Getting Started
-You need the Postgresql database installed before proceeding with the below steps
+You need the PostgreSQL database installed before proceeding with the below steps
 To get started with the project follow the steps below:
 - You must have yarn installed
 - `git clone https://github.com/patrick-angelos/ror-social-scaffold.git`
@@ -28,11 +24,12 @@ To get started with the project follow the steps below:
 - `rails s` to start the server
 - Go to `localhost:3000` on your browser
 
+### To run the tests
+- `bundle exec rspec`
 
-## Author
+## Authors
 
 👤 **Patrikis Angelos**
-
 - GitHub: [@patrick-angelos](https://github.com/patrick-angelos)
 - Twitter: [@AngelosPatrikis](https://twitter.com/AngelosPatrikis)
 - LinkedIn: [Angelos Patrikis](https://www.linkedin.com/in/patrikis-angelos/)
@@ -44,8 +41,8 @@ To get started with the project follow the steps below:
 
 ## Acknowledgment
 
-This project is based on microverseinc repository, all credits go to Microverse. 
-
+- To Microverse for their `README` template.
+- To Microverse for their creating the starting point for this project. 
 
 ## 🤝 Contributing
 
